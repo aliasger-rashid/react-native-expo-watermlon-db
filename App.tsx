@@ -8,6 +8,8 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import {
+  Alert,
+  Button,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -24,6 +26,8 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {database} from '.';
+import {generate100} from './src/model/generate';
 
 type SectionProps = PropsWithChildren<{
   title: string;
@@ -62,6 +66,13 @@ function App(): React.JSX.Element {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
 
+  const generateWith = async (generator: any) => {
+    console.log('Generating records...');
+    const count = await generator(database);
+    Alert.alert(`Generated ${count} records!`);
+    console.log('Generated', count, 'records');
+  };
+
   return (
     <SafeAreaView style={backgroundStyle}>
       <StatusBar
@@ -76,6 +87,13 @@ function App(): React.JSX.Element {
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
+          <Button
+            title="Generate 100 records"
+            onPress={() => {
+              generateWith(generate100);
+            }}
+          />
+
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.

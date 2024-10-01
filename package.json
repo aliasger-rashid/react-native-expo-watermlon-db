@@ -10,11 +10,15 @@
     "test": "jest"
   },
   "dependencies": {
+    "@nozbe/watermelondb": "^0.27.1",
+    "expo": "^51.0.0",
+    "rambdax": "^11.2.0",
     "react": "18.3.1",
     "react-native": "0.75.3"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@babel/plugin-proposal-decorators": "^7.24.7",
     "@babel/preset-env": "^7.20.0",
     "@babel/runtime": "^7.20.0",
     "@react-native/babel-preset": "0.75.3",
